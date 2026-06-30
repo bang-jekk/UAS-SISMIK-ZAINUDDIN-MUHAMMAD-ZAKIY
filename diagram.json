@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 153.6, "left": -4.76, "attrs": {} },
+    { "type": "board-mfrc522", "id": "rfid1", "top": 189.35, "left": 147.44, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 344.4,
+      "left": 323.4,
+      "rotate": 90,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": 142.8,
+      "left": 313.8,
+      "rotate": 90,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 369.05,
+      "left": 248.2,
+      "rotate": 180,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 167.45,
+      "left": 229,
+      "rotate": 180,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": 223.2,
+      "left": 385.8,
+      "attrs": { "volume": "0.1" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "rfid1:SDA", "esp:5", "red", [ "h-28.8", "v38.4" ] ],
+    [ "rfid1:SCK", "esp:18", "gold", [ "h-19.2", "v19.2" ] ],
+    [ "rfid1:MOSI", "esp:23", "green", [ "h-38.4", "v-57.6" ] ],
+    [ "rfid1:MISO", "esp:19", "cyan", [ "h-19.2", "v19.2", "h-28.8", "v-28.8" ] ],
+    [ "esp:21", "rfid1:RST", "orange", [ "h19.2", "v57.6" ] ],
+    [ "esp:3V3", "rfid1:3.3V", "#8f4814", [ "h-38.25", "v201.6", "h172.8", "v-86.4" ] ],
+    [ "esp:GND.1", "rfid1:GND", "black", [ "h-9.45", "v67.2", "h134.4", "v-96" ] ],
+    [ "led1:C", "esp:GND.2", "black", [ "v-9.2", "h-220.8", "v-172.8" ] ],
+    [ "esp:GND.1", "led2:C", "black", [ "h-19.05", "v-153.6", "h278.4", "v9.2" ] ],
+    [ "led1:A", "r1:1", "red", [ "v0" ] ],
+    [ "led2:A", "r2:1", "green", [ "v0" ] ],
+    [ "esp:26", "r2:2", "green", [ "h-28.65", "v-124.8", "h153.6", "v28.8" ] ],
+    [ "r1:2", "esp:27", "red", [ "v-10.8", "h-124.8", "v134.4" ] ],
+    [ "bz1:1", "esp:GND.1", "black", [ "v19.2", "h-28.8", "v57.6", "h-403.2", "v-76.8" ] ],
+    [ "esp:25", "bz1:2", "red", [ "h-57.45", "v134.4", "h480.4" ] ]
+  ],
+  "dependencies": {}
+}
